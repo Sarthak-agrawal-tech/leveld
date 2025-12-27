@@ -1,0 +1,20 @@
+import mongoose from "mongoose";
+
+const userSchema = new mongoose.Schema(
+  {
+    name: { type: String, required: true },
+
+    username: { type: String, required: true, unique: true },
+    email: { type: String, required: true, unique: true },
+    passwordHash: { type: String, required: true },
+
+    totalXP: { type: Number, default: 0 },
+    level: { type: Number, default: 1 },
+
+    currentStreak: { type: Number, default: 0 },
+    lastActiveDate: { type: Date },
+  },
+  { timestamps: true }
+);
+
+export default mongoose.model("User", userSchema);
