@@ -1,0 +1,4 @@
+echo ".env
+.env.*
+apps/ai/.env
+apps/backend/.env" >> .gitignore
