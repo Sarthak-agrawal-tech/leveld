@@ -1,4 +1,5 @@
 import Goal from "../models/Goal.js";
+import { generateQuest } from "../../../ai/index.js";
 
 export const createGoal = async (req, res) => {
   try {
@@ -15,6 +16,9 @@ export const createGoal = async (req, res) => {
       userId: tempUserId,
       title,
     });
+
+    const quest = await generateQuest(title);
+
 
     res.status(201).json(goal);
   } catch (error) {
