@@ -1,6 +1,5 @@
-import fetch from "node-fetch";
 import { questPrompt } from "./prompts/quest.prompt.js";
-import { QuestSchema } from "./validators/quest.schema.js";
+import { QuestSchema } from "./validator/quest.schema.js";
 
 export const generateQuest = async (goalTitle) => {
   const response = await fetch("http://localhost:11434/api/generate", {
@@ -13,10 +12,19 @@ export const generateQuest = async (goalTitle) => {
     }),
   });
 
-  const data = await response.json();
+  if (!response.ok) {
+    throw new Error("Ollama inference failed");
+  }
 
+  const data = await response.json();
   const raw = data.response;
 
-  const parsed = JSON.parse(raw);
+  let parsed;
+  try {
+    parsed = JSON.parse(raw);
+  } catch {
+    throw new Error("Ollama returned invalid JSON");
+  }
+
   return QuestSchema.parse(parsed);
 };

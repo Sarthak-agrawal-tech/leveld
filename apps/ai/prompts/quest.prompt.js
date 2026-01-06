@@ -1,13 +1,13 @@
 export const questPrompt = (goalTitle) => `
-You are a JSON-only generator.
+You are a system that generates structured learning quests.
 
-STRICT RULES:
+RULES (VERY IMPORTANT):
 - Output ONLY valid JSON
 - No explanations
 - No markdown
 - No extra text
 
-Generate a structured learning quest for the goal:
+GOAL:
 "${goalTitle}"
 
 FORMAT:
