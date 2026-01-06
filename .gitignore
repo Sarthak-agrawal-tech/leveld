@@ -1,4 +1,4 @@
-echo ".env
+.env
 .env.*
+apps/backend/.env
 apps/ai/.env
-apps/backend/.env" >> .gitignore
