@@ -33,4 +33,10 @@ CONSTRAINTS:
 - 3 to 5 levels per unit
 - 3 to 6 tasks per level
 - XP between 10 and 100
+
+IMPORTANT:
+- Every level MUST have at least 3 tasks
+- Tasks must be physical, actionable (e.g. workouts, reps, habits)
+- Do NOT return empty arrays
+
 `;
