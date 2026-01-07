@@ -116,3 +116,43 @@ if (!quest) {
   }
 };
 
+export const getQuestTree = async (req, res) => {
+  try {
+    const { goalId } = req.params;
+    const userId = req.user.id;
+
+    const goal = await Goal.findOne({ _id: goalId, userId });
+    if (!goal) {
+      return res.status(404).json({ message: "Goal not found" });
+    }
+
+    const units = await Unit.find({ goalId })
+      .sort({ order: 1 })
+      .lean();
+
+    for (const unit of units) {
+      const levels = await Level.find({ unitId: unit._id })
+        .sort({ order: 1 })
+        .lean();
+
+      for (const level of levels) {
+        const tasks = await Task.find({ levelId: level._id })
+          .sort({ _id: 1 })
+          .lean();
+
+        level.tasks = tasks;
+      }
+
+      unit.levels = levels;
+    }
+
+    return res.json({
+      goal,
+      units,
+    });
+  } catch (error) {
+    console.error("Get quest tree error:", error.message);
+    return res.status(500).json({ message: "Failed to fetch quest tree" });
+  }
+};
+
