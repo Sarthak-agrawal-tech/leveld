@@ -4,6 +4,7 @@ import goalRoutes from "./routes/goal.routes.js";
 import authRoutes from "./routes/auth.routes.js";
 import errorHandler from "./middleware/error.middleware.js";
 import taskRoutes from "./routes/task.routes.js";
+import progressRoutes from "./routes/progress.routes.js";
 
 
 const app = express();
@@ -18,6 +19,7 @@ app.get("/", (req, res) => {
 app.use("/goals", goalRoutes);
 app.use("/auth", authRoutes);
 app.use("/tasks", taskRoutes);
+app.use("/progress", progressRoutes);
 
 app.use(errorHandler);
 
