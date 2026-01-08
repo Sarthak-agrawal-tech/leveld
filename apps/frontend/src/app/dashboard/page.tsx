@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import api from "@/lib/api";
-
+import Link from "next/link";
 
 type GoalProgress = {
   goalId: string;
@@ -44,21 +44,20 @@ export default function DashboardPage() {
       {/* Goals */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {data.goals.map((goal) => (
-          <div
-            key={goal.goalId}
-            className="border p-4 rounded space-y-2"
-          >
-            <h3 className="font-semibold">{goal.title}</h3>
+          <Link href={`/goals/${goal.goalId}`} key={goal.goalId}>
+            <div className="border p-4 rounded space-y-2 cursor-pointer hover:bg-gray-50">
+              <h3 className="font-semibold">{goal.title}</h3>
 
-            <div className="w-full bg-gray-200 h-2 rounded">
-              <div
-                className="bg-black h-2 rounded"
-                style={{ width: `${goal.progress}%` }}
-              />
+              <div className="w-full bg-gray-200 h-2 rounded">
+                <div
+                  className="bg-black h-2 rounded"
+                  style={{ width: `${goal.progress}%` }}
+                />
+              </div>
+
+              <p className="text-sm">{goal.progress}% complete</p>
             </div>
-
-            <p className="text-sm">{goal.progress}% complete</p>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
