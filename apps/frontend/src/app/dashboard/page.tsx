@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import api from "@/lib/api";
 
+
 type GoalProgress = {
   goalId: string;
   title: string;
@@ -35,7 +36,7 @@ export default function DashboardPage() {
       <h1 className="text-3xl font-bold">Dashboard</h1>
 
       {/* XP */}
-      <div className="bg-black text-white p-4 rounded">
+      <div className="bg-red-300 text-white p-4 rounded">
         <p className="text-sm">Total XP</p>
         <p className="text-2xl font-bold">{data.totalXp}</p>
       </div>

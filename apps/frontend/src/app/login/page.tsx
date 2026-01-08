@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import api, { setAuthToken } from "@/lib/api";
+import api from "@/lib/api";
 import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
@@ -9,27 +9,20 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const router = useRouter();
 
-  const handleLogin = async () => {
+ const handleLogin = async () => {
   try {
-    const res = await api.post("/auth/login", {
-      email,
-      password,
-    });
+    const res = await api.post("/auth/login", { email, password });
 
     console.log("LOGIN RESPONSE:", res.data);
 
-    setAuthToken(res.data.token);
+    localStorage.setItem("token", res.data.data.token);
     router.push("/dashboard");
   } catch (error: any) {
-    console.error("LOGIN ERROR:", error);
-
-    alert(
-      error?.response?.data?.message ||
-      error.message ||
-      "Login failed"
-    );
+    alert(error?.response?.data?.message || "Login failed");
   }
 };
+
+
 
   return (
     <div className="min-h-screen flex items-center justify-center">
