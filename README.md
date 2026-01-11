@@ -119,5 +119,37 @@ http://localhost:3000
 
 
 
+🔌 API Overview
+Auth
+POST /api/auth/register
+POST /api/auth/login
+Goals
+POST /api/goals → Create goal + AI quest
+GET /api/goals/:id/quest-tree
+Tasks
+PATCH /api/tasks/:id/complete
+Progress
+GET /api/progress/summary
+
+🧩 Design Philosophy
+AI is probabilistic, backend is deterministic
+Backend validates and retries weak AI output
+Frontend is kept dumb and predictable
+Gamification logic lives on the server
+
+
+🚧 Roadmap
+🔓 Level animations & transitions
+🏆 Achievements & badges
+🔥 Streak tracking
+👥 Social sharing & accountability
+☁️ Deployment (Docker + Cloud)
+
+
+
+👤 Author
+Built by Sarthak Agrawal
+Project: Leveld
+
 
 
