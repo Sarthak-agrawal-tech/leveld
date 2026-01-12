@@ -1,4 +1,4 @@
-# Leveld 🚀  
+# Leveld 🔥
 **AI-Powered Gamified Goal Tracking Platform**
 
 Leveld turns long-term goals into structured, gamified quest trees using AI.  
