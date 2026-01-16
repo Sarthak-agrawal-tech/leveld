@@ -14,7 +14,7 @@ Users gain XP, unlock levels, and progress visually—like a game, but for real 
   - Units → Levels → Tasks
 - Automatically structured, validated, and persisted
 
-### 🎮 Gamified Progress System
+### 🎮 Gamified Progress System (first gen)
 - Task completion grants XP
 - Levels unlock sequentially
 - Units unlock after completion
