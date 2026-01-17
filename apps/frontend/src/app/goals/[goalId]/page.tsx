@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import api from "@/lib/api";
+import NavBar from "@/components/NavBar";
+import LevelNode from "@/components/LevelNode";
 
 export default function GoalPage() {
   const { goalId } = useParams();
@@ -16,12 +18,10 @@ export default function GoalPage() {
 
   if (!data) return <div className="p-6">Loading...</div>;
 
+
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold">{data.goal.title}</h1>
-      <pre className="mt-4 bg-green-800 p-4 rounded">
-        {JSON.stringify(data.units, null, 2)}
-      </pre>
+    <div>
+      <NavBar></NavBar>
     </div>
   );
 }

@@ -124,3 +124,17 @@ export const login = async (req, res) => {
     });
   }
 };
+export const getMe = (req, res) => {
+  res.json({
+    success: true,
+    data:{
+      id: req.user._id,
+      name: req.user.name,
+      username: req.user.username,
+      email: req.user.email,
+      xp: req.user.xp
+    }
+  })
+};
+
+
