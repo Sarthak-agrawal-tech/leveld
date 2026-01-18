@@ -21,7 +21,7 @@ export default function GoalPage() {
 
   return (
     <div>
-      <NavBar></NavBar>
+      <NavBar />
     </div>
   );
 }
