@@ -1,8 +1,9 @@
-import React from "react";
+"use client";
+
 import { useUser } from "../context/UserContext";
 
-const user = useUser();
 const NavBar = () => {
+  const user = useUser();
   return (
     <div className="quest-tree-container bg-[#0B1020] min-h-screen">
       <div className="nav-bar-container flex justify-between items-center align-middle p-4">
