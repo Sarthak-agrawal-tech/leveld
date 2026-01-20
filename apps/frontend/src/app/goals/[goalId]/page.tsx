@@ -22,6 +22,12 @@ export default function GoalPage() {
   return (
     <div>
       <NavBar />
+      <div>
+        <p className="text-2xl font-bold mt-13">Quest Tree</p>
+      </div>
+      <div className="quest-container"> 
+        <p>{data}</p>
+      </div>
     </div>
   );
 }

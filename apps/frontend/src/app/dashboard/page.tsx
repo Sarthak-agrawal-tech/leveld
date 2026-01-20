@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import api from "@/lib/api";
 import Link from "next/link";
+import NavBar from "@/components/NavBar";
 
 type GoalProgress = {
   goalId: string;
@@ -32,33 +33,27 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="p-6 space-y-6">
-      <h1 className="text-3xl font-bold">Dashboard</h1>
-
-      {/* XP */}
-      <div className="bg-red-300 text-white p-4 rounded">
-        <p className="text-sm">Total XP</p>
-        <p className="text-2xl font-bold">{data.totalXp}</p>
-      </div>
-
-      {/* Goals */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {data.goals.map((goal) => (
-          <Link href={`/goals/${goal.goalId}`} key={goal.goalId}>
-            <div className="border p-4 rounded space-y-2 cursor-pointer hover:bg-gray-50">
-              <h3 className="font-semibold">{goal.title}</h3>
-
-              <div className="w-full bg-gray-200 h-2 rounded">
-                <div
-                  className="bg-black h-2 rounded"
-                  style={{ width: `${goal.progress}%` }}
-                />
+    <div className="flex flex-col bg-[#0B1020] min-h-screen">
+      <NavBar/>
+      <div className="quest-container display-flex flex-col justify-start p-8 pl-15">
+        <div className="top-container flex flex-row justify-between items-center mb-8">
+          <p className="text-2xl font-inter">Quest</p>
+          <button className="mr-20 bg-[#6D28D9] p-[8px] pr-8 pl-8 rounded-xl">View All</button>
+        </div>
+        <div className="cards-container flex flex-row mr-20">
+          {data.goals.map(goal =>(
+            <div className="card bg-[#1E2746] flex-1 h-35 rounded-xl p-6 mr-6 hover:scale-105 transition-transform cursor-pointer" key={goal.goalId}>
+            <div className="flex flex-row">
+              <div className="flex flex-col justify-between h-25 w-40">
+                <p className="m-0 p-0">{goal.title}</p>
+                <button className="bg-[#0B1020] p-[6px] rounded-xl">Continue</button>
               </div>
-
-              <p className="text-sm">{goal.progress}% complete</p>
             </div>
-          </Link>
-        ))}
+          </div>
+          ))}
+          
+          
+        </div>
       </div>
     </div>
   );
