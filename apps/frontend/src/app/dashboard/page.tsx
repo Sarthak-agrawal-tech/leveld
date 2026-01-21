@@ -37,7 +37,7 @@ export default function DashboardPage() {
       <NavBar/>
       <div className="quest-container display-flex flex-col justify-start p-8 pl-15">
         <div className="top-container flex flex-row justify-between items-center mb-8">
-          <p className="text-2xl font-inter">Quest</p>
+          <p className="text-2xl font-mono text-bold">Quest</p>
           <button className="mr-20 bg-[#6D28D9] p-[8px] pr-8 pl-8 rounded-xl">View All</button>
         </div>
         <div className="cards-container flex flex-row mr-20">
@@ -46,7 +46,9 @@ export default function DashboardPage() {
             <div className="flex flex-row">
               <div className="flex flex-col justify-between h-25 w-40">
                 <p className="m-0 p-0">{goal.title}</p>
-                <button className="bg-[#0B1020] p-[6px] rounded-xl">Continue</button>
+                <div>
+                  <button className="bg-[#0B1020] p-[6px] pl-[12px] pr-[12px] rounded-xl cursor-pointer hover:opacity-80">Continue</button>
+                </div>
               </div>
             </div>
           </div>
@@ -54,6 +56,25 @@ export default function DashboardPage() {
           
           
         </div>
+      </div>
+      <div className="task-streak-container display-flex flex-row justify-start mr-20">
+          <div className="task-container display-flex flex-col p-8 pl-15 mb-8 flex-1">
+            <div>
+              <p className="font-mono text-2xl text-bold">Task</p>
+            </div>
+            <div className="task-card display-flex flex-col bg-[#1E2746] rounded-xl p-6 mt-4 ">
+
+              <div className="card"></div>
+            </div>
+          </div>
+          <div className="streaks-container flex-2">
+        <div>
+          <p className="font-mono text-2xl text-bold">Your Streak</p>
+          
+        </div>
+        <div className="streak-card"></div> 
+
+      </div>
       </div>
     </div>
   );
