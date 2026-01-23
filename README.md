@@ -143,13 +143,14 @@ Gamification logic lives on the server
 🏆 Achievements & badges
 🔥 Streak tracking
 👥 Social sharing & accountability
-☁️ Deployment (Docker + Cloud)
+☁️ Deployment (Docker + Cloud) Not Final
 
 
 
 👤 Author
 Built by Sarthak Agrawal
 Project: Leveld
+
 
 
 
