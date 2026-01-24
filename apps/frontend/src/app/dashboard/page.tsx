@@ -63,18 +63,21 @@ export default function DashboardPage() {
         </div>
       </div>
       <div className="task-streak-container flex flex-row justify-start mr-20">
-        <div className="task-container display-flex flex-col p-8 pl-15 mb-8 flex-1">
+        <div className="task-container flex flex-col p-8 pl-15 mb-8 flex-1">
           <div>
             <p className="font-mono text-2xl text-bold">Task</p>
           </div>
           <div className="task-card flex flex-col bg-[#1E2746] rounded-xl p-6 mt-4 ">
-            <div className="card min-h-15">
+            {data.goals.map((goal) =>(
+              <div className="card min-h-15 flex flex-row justify-between items-center ">
               <div className="title-container flex flex-col justify-between h-14">
-                <p className="text-[16px] font-bold">Full stack Developer</p>
+                <p className="text-[16px] font-bold"></p>
                 <p className="text-[13px] text-[#9AA3B2]">Create your first Auth middleware</p>
               </div>
-              <button className="color-[]">Go to task</button>
+              <button className="bg-[#0B1020] p-[6px] pl-[12px] pr-[12px] rounded-xl cursor-pointer hover:opacity-80 ml-3 text-[14px]">Go to task</button>
             </div>
+            ))}
+            
           </div>
         </div>
         <div className="streaks-container flex-3">
