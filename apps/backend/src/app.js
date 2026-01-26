@@ -5,7 +5,7 @@ import authRoutes from "./routes/auth.routes.js";
 import errorHandler from "./middleware/error.middleware.js";
 import taskRoutes from "./routes/task.routes.js";
 import progressRoutes from "./routes/progress.routes.js";
-
+import dashboardRoutes from "./routes/dashboard.routes.js"
 
 const app = express();
 
@@ -20,6 +20,7 @@ app.use("/goals", goalRoutes);
 app.use("/auth", authRoutes);
 app.use("/tasks", taskRoutes);
 app.use("/progress", progressRoutes);
+app.use("/dashboard", dashboardRoutes);
 
 app.use(errorHandler);
 
