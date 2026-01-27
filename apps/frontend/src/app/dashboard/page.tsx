@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import api from "@/lib/api";
-import Link from "next/link";
 import NavBar from "@/components/NavBar";
 import { DashboardData } from "@/types/dashboard";
 
