@@ -1,31 +1,68 @@
 "use client";
 
-import { useUser } from "../context/UserContext";
-import { useEffect, useState } from "react";
-import api from "@/lib/api";
+import { useRouter } from "next/navigation";
+import { useUser } from "@/context/UserContext";
 
 const NavBar = () => {
+  const router = useRouter();
   const user = useUser();
-  const [data, setData] = useState<any>(null);
-  useEffect(()=>{
-    api.get(`/goals/${user?.id}/quest-tree`).then((res) => {
-      setData(res.data);
-    })
-  })
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    router.push("/login");
+  };
+
+  const handleGenerate = () => {
+    router.push("/");
+  };
 
   return (
-    <div className="quest-tree-container bg-[#0B1020] display-flex flex-col justify-center text-center">
-      <div className="nav-bar-container flex justify-between items-center align-middle p-4">
-        <h1 className="logo text-3xl text-[#E6E9F2] font-bold pl-4">LEVELD</h1>
-        <div className="user-info-container align-right pr-4 flex items-center align-middle flex-row">
-          <div className="name-container flex flex-col items-end">
-            <p className="name pr-4 text-[#E6E9F2] text-xl font-bold">{user?.name}</p>
-            <p className="username text-[#9AA3B2] pr-4 text-sm">
-              {user?.username}
-            </p>
+    <div className="bg-[#0B1020] border-b border-[#1A2040]">
+      <div className="flex justify-between items-center px-8 py-4">
+
+        {/* Logo */}
+        <h1
+          className="text-3xl text-[#E6E9F2] font-bold cursor-pointer"
+          onClick={() => router.push("/dashboard")}
+        >
+          LEVELD
+        </h1>
+
+        {/* Right Section */}
+        {user && (
+          <div className="flex items-center gap-4">
+
+            {/* Generate */}
+            <button
+              onClick={handleGenerate}
+              className="bg-[#6D28D9] px-4 py-2 rounded-lg text-white hover:opacity-90"
+            >
+              + Generate
+            </button>
+
+            {/* User Info */}
+            <div className="flex flex-col items-end">
+              <p className="text-[#E6E9F2] text-sm font-semibold">
+                {user.name}
+              </p>
+
+              <p className="text-[#9AA3B2] text-xs">
+                @{user.username}
+              </p>
+            </div>
+
+            {/* Avatar */}
+            <div className="w-10 h-10 rounded-full bg-[#D9D9D9]" />
+
+            {/* Logout */}
+            <button
+              onClick={handleLogout}
+              className="text-red-400 text-sm hover:underline"
+            >
+              Logout
+            </button>
           </div>
-          <div className="w-16 h-16 rounded-full bg-[#D9D9D9]"></div>
-        </div>
+        )}
 
       </div>
     </div>

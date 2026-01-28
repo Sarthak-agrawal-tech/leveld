@@ -4,9 +4,16 @@ import { useEffect, useState } from "react";
 import api from "@/lib/api";
 import NavBar from "@/components/NavBar";
 import { DashboardData } from "@/types/dashboard";
-
+import { useRouter } from "next/dist/client/components/navigation";
 export default function DashboardPage() {
+  const router = useRouter();
   const [data, setData] = useState<DashboardData | null>(null);
+
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      router.push("/login");
+    }
+  }, []);
 
   useEffect(() => {
     api.get<DashboardData>("/dashboard").then((res) => {
@@ -55,22 +62,19 @@ export default function DashboardPage() {
           </div>
           <div className="task-card-container max-h-[240px] overflow-y-auto space-y-3 pr-3">
             {data.activeTasks.map((task) => (
-            <div className="task-card flex flex-col bg-[#1E2746] rounded-xl p-6 mt-4 cursor-pointer">
-              <div className="card min-h-15 flex flex-row justify-between">
-                <div className="title-container flex flex-col justify-between h-20">
-                  <p className="text-[16px] font-bold ">{task.title}</p>
-                  <p className="text-[13px] text-[#9AA3B2]">
-                    {task.xp} XP
-                  </p>
+              <div className="task-card flex flex-col bg-[#1E2746] rounded-xl p-6 mt-4 cursor-pointer">
+                <div className="card min-h-15 flex flex-row justify-between">
+                  <div className="title-container flex flex-col justify-between h-20">
+                    <p className="text-[16px] font-bold ">{task.title}</p>
+                    <p className="text-[13px] text-[#9AA3B2]">{task.xp} XP</p>
+                  </div>
+                  <button className="bg-[#0B1020] p-[6px] pl-[12px] pr-[12px] rounded-xl cursor-pointer hover:opacity-80 ml-3 text-[14px] max-h-14">
+                    Go to task
+                  </button>
                 </div>
-                <button className="bg-[#0B1020] p-[6px] pl-[12px] pr-[12px] rounded-xl cursor-pointer hover:opacity-80 ml-3 text-[14px] max-h-14">
-                  Go to task
-                </button>
               </div>
-            </div>
-          ))}
+            ))}
           </div>
-          
         </div>
         <div className="streaks-container flex-1/3">
           <div>
