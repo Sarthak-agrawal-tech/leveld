@@ -16,9 +16,12 @@ export const completeTask = async (req, res) => {
     // 1️⃣ Complete task
     task.completed = true;
     await task.save();
+    const user = await User.findById(userId);
+    if (user) {
+      await updateStreak(user);
+    }
 
     // 2️⃣ Add XP to user
-    const user = await User.findById(userId);
     user.totalXP += task.xp;
     await user.save();
 
@@ -68,4 +71,39 @@ export const completeTask = async (req, res) => {
     console.error("Complete task error:", error.message);
     return res.status(500).json({ message: "Failed to complete task" });
   }
+};
+
+const updateStreak = async (user) => {
+  // ✅ Ensure streak object exists
+  if (!user.streak) {
+    user.streak = {
+      current: 0,
+      lastCompletedAt: null,
+    };
+  }
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const last = user.streak.lastCompletedAt;
+
+  if (!last) {
+    // First ever task
+    user.streak.current = 1;
+  } else {
+    const lastDay = new Date(last);
+    lastDay.setHours(0, 0, 0, 0);
+
+    const diff = (today - lastDay) / (1000 * 60 * 60 * 24);
+
+    if (diff === 1) {
+      user.streak.current += 1;
+    } else if (diff > 1) {
+      user.streak.current = 1;
+    }
+  }
+
+  user.streak.lastCompletedAt = new Date();
+
+  await user.save();
 };

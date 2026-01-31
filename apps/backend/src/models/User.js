@@ -10,11 +10,19 @@ const userSchema = new mongoose.Schema(
 
     totalXP: { type: Number, default: 0 },
     level: { type: Number, default: 1 },
-
-    currentStreak: { type: Number, default: 0 },
-    lastActiveDate: { type: Date },
+    streak: {
+  current: {
+    type: Number,
+    default: 0,
   },
-  { timestamps: true }
+  lastCompletedAt: {
+    type: Date,
+    default: null,
+  },
+},
+
+  },
+  { timestamps: true },
 );
 
 export default mongoose.model("User", userSchema);
