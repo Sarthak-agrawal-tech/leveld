@@ -17,7 +17,7 @@ export default function HomePage() {
     }
 
     // Logged in → go to dashboard / generate
-    router.push("/dashboard");
+    router.push("/generate");
   };
 
   return (

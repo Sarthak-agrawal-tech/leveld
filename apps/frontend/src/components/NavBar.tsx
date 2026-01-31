@@ -13,7 +13,7 @@ const NavBar = () => {
   };
 
   const handleGenerate = () => {
-    router.push("/");
+    router.push("/generate");
   };
 
   return (
